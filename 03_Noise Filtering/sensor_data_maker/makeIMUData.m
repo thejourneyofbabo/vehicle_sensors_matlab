@@ -1,6 +1,6 @@
 function [true_acceleration, measured_acceleration, t] = makeIMUData(end_of_time, sampling_frequency, noise_size)
     
-    % make real acceleration data for simulation
+    % make acceleration data for simulation
     t = 0:1/sampling_frequency:end_of_time; % time vector
     true_acceleration = sin(2/6*pi*t); % 'real' acceleration which means 'gt'
     noise = noise_size*randn(size(t)); % add gaussian noise

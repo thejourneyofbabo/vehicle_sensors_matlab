@@ -6,7 +6,7 @@ function [average_filter_data] = averageFilter(sensor_data, sensor_measure_time,
     % complete the average filter!
 
     for idx=1:length(sensor_data)
-        average_filter_data(idx) = 0; % fill in the formula instead of 0!
+        average_filter_data(idx) = mean(sensor_data(1:idx)); % fill in the formula instead of 0!
     end
     %% Visualization
     

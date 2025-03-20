@@ -5,7 +5,11 @@ function [exponential_moving_average_filter_data] = exponentialMovingAverageFilt
     % complete the exponential moving average filter
     %% ToDo
     for idx=1:length(sensor_data)
-        exponential_moving_average_filter_data(idx) = 0; % fill in the formula instead of 0!
+        if idx == 1 
+            exponential_moving_average_filter_data(idx) = sensor_data(idx);
+            continue;
+        end
+        exponential_moving_average_filter_data(idx) = alpha*exponential_moving_average_filter_data(idx-1) + (1-alpha)*sensor_data(idx); % fill in the formula instead of 0!
     end
     
     %% Visualization

@@ -6,7 +6,19 @@ function [moving_average_filter_data] = movingAverageFilter(sensor_data, sensor_
     %% ToDo
 
     for idx=1:length(moving_average_filter_data)
-        moving_average_filter_data(idx) = 0; % fill in the formula instead of 0!
+        % if idx < window_size
+        %     moving_average_filter_data(idx) = mean(sensor_data(1:idx));
+        % else
+        %     moving_average_filter_data(idx) = mean(sensor_data(idx-window_size+1:idx)); 
+        % end
+
+        if idx < window_size
+            moving_average_filter_data(idx) = mean(sensor_data(1:idx));
+            continue;
+        end
+        
+        moving_average_filter_data(idx) = mean(sensor_data(idx-window_size+1:idx));
+
     end
     
     %% Visualization

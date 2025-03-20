@@ -11,4 +11,3 @@ function [] = visualizeEncoderSpeed(t,vehicleSpeed, estimatedSpeedCounting, esti
     
     legend('gt speed', 'estimated speed with pulse counting', 'estimated speed with pulse timing');
 end
-
