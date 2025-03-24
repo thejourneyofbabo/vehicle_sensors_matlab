@@ -10,7 +10,7 @@ function [estimated_speed] = PulseCountingMethod(t,pulses, pulsesPerRevolution, 
         % estimated_speed(idx) = 0;
         if idx == 1 
             prev_time = t(idx);
-             prev_pulse = pulses(idx);
+            prev_pulse = pulses(idx);
             continue;
         end
 
