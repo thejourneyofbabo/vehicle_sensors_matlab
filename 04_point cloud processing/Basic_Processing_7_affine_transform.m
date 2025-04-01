@@ -13,15 +13,15 @@ ptCloud = pcread('teapot.ply');
 % Rotation of 3-D Point Cloud
 %%%%%%%%%% TODO %%%%%%%%%%
 % Create an affine transform object that defines a 45 degree rotation along the z-axis.
-A = [cos(XXXXXXXX) -sin(XXXXXXXX) 0 0; ...
-     sin(XXXXXXXX) cos(XXXXXXXX) 0 0; ...
+A = [cos(pi/4) -sin(pi/4) 0 0; ...
+     sin(pi/4) cos(pi/4) 0 0; ...
      0 0 1 0; ...
      0 0 0 1];
 tform = affinetform3d(A);
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Transform the point cloud.
-ptCloudOut1 = pctransform(XXXXXXXX, XXXXXXXX);
+ptCloudOut1 = pctransform(ptCloud, tform);
 
 % Shearing of 3-D point cloud
 % Create an affine transform object that defines shearing along the x-axis.
@@ -33,7 +33,7 @@ tform = affinetform3d(A);
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Transform the point cloud.
-ptCloudOut2 = pctransform(XXXXXXXX, XXXXXXXX);
+ptCloudOut2 = pctransform(ptCloud, tform);
 
 % Display the Original and Affine Transformed 3-D Point Clouds
 figure1 = figure('WindowState','normal');

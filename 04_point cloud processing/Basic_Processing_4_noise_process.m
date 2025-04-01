@@ -15,7 +15,7 @@ figure
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Show point cloud.
-pcshow(XXXXXXXX);
+pcshow(InputPointCloud);
 
 xlabel('X');
 ylabel('Y');
@@ -36,7 +36,7 @@ noise = rand(500, 3);
 %%%%%%%%%% TODO %%%%%%%%%%
 % Add random noise to point cloud.
 PointCloudwithNoise = ...
-pointCloud([XXXXXXXX.Location; noise]);
+pointCloud([InputPointCloud.Location; noise]);
 
 figure
 pcshow(PointCloudwithNoise);
@@ -57,7 +57,7 @@ title({'Adding uniformly distributed random noise'},'FontSize', 14, 'Color', 'bl
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Denoise point cloud from PointCloudwithNoise.
-denoisedPointCloud = pcdenoise(XXXXXXXX);
+denoisedPointCloud = pcdenoise(PointCloudwithNoise);
 
 figure;
 pcshow(denoisedPointCloud);

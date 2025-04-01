@@ -11,7 +11,7 @@ InputPointCloud = pcread('teapot.ply');
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Visualize point cloud.
-pcshow(XXXXXXXXX);
+pcshow(InputPointCloud);
 
 xlabel('X');
 ylabel('Y');
@@ -23,11 +23,11 @@ title({'Creating a Point Cloud'},'FontSize', 14, 'Color', 'black')
 
 %% Random sample downsample method
 % Set the random sampling percentage.
-percentage = 0.4;
+percentage = 0.1;
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Downsample point cloud using random sample method.
-randomDownsampledPointCloud = pcdownsample(InputPointCloud, XXXXXXXXX, XXXXXXXXX);
+randomDownsampledPointCloud = pcdownsample(InputPointCloud, "random", percentage);
 
 % Visualize the downsampled data.
 figure;
@@ -46,7 +46,7 @@ gridStep = 0.3;
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Downsample point cloud using grid average method.
-GridAverageDownsampledPointCloud = pcdownsample(InputPointCloud, XXXXXXXXX, XXXXXXXXX);
+GridAverageDownsampledPointCloud = pcdownsample(InputPointCloud, "gridAverage", gridStep);
 
 % Visualize the downsampled data.
 figure();
@@ -61,11 +61,11 @@ title({'Gridsample downsample method'},'FontSize', 14, 'Color', 'black')
 
 %% Nonuniform GridSample downsample method
 % Set the maximum number of points in grid box
-maxNumPoints = 10;
+maxNumPoints = 20;
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Downsample point cloud using nonuniform grid sample method.
-nonuniformGridSampleDownsample = pcdownsample(InputPointCloud, XXXXXXXXX, XXXXXXXXX);
+nonuniformGridSampleDownsample = pcdownsample(InputPointCloud, "nonuniformGridSample", maxNumPoints);
 
 % Visualize the downsampled data.
 figure();

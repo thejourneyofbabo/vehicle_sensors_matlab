@@ -15,7 +15,7 @@ roi = [-2 2 -2 2 2.4 3.5];
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Find the indices of the points that lie within the cuboid ROI.
-indices = findPointsInROI(XXXXXXXX, XXXXXXXX);
+indices = findPointsInROI(ptCloud, roi);
 
 % Select the points that lie within the cuboid ROI and store as a point cloud object.
 ptCloudB = select(ptCloud,indices);
