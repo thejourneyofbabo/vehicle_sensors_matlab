@@ -12,11 +12,12 @@ clear; close all;
 %% To do 1. load the teapot point cloud.
 %%%%%%%%%% TODO %%%%%%%%%%
 % read teapot using 'pcread'
-ptCloud = [0 0 0];
+%ptCloud = [0 0 0];
+ptCloud = pcread('teapot.ply');
 
 % show the original teapot point cloud
 figure(1);
-pcshow([0 0 0], [0.7, 0.7, 0.7]);
+pcshow(ptCloud.Location, [0.7, 0.7, 0.7]);
 title('The original teapot');
 
 %% To do 2. Make two point cloud dividing it into upper and lower point clouds through search algorithm (findPointsInROI).
@@ -24,51 +25,51 @@ title('The original teapot');
 % set upper and lower ROIs 
 % ROI of upper point cloud: -4 m to 4 m for x-axis and y-axis, 0.1 m to 3.2 m for z-axis
 % ROI of lower point cloud: -4 m to 4 m for x-axis and y-axis, 0   m to 2.8 m for z-axis 
-roiUpper = [0 0 0 0 0 0];
-roiLower = [0 0 0 0 0 0];
+roiUpper = [-4 4 -4 4 0.1 3.2];
+roiLower = [-4 4 -4 4 0 2.8];
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % make upper and lower point clouds to registrer them after transformation using 'findPointsInROI' and 'select'
 % Upper point cloud
-indicesUpper = 0;
-ptCloudUpper = 0;
+indicesUpper = findPointsInROI(ptCloud, roiUpper);
+ptCloudUpper = select(ptCloud, indicesUpper);
 
 % Lower point cloud
-indicesLower = 0;
-ptCloudLower = 0;
+indicesLower = findPointsInROI(ptCloud, roiLower);
+ptCloudLower = select(ptCloud, indicesLower);
 
 % show the upper and lowers
 figure(2);
-pcshow([0 0 0], [1, 0.5, 0.5]);
+pcshow(ptCloudUpper.Location, [1, 0.5, 0.5]);
 title('The upper teapot');
 
 figure(3);
-pcshow([0 0 0], [1, 0.5, 0.5]);
+pcshow(ptCloudLower.Location, [1, 0.5, 0.5]);
 title('The lower teapot');
 
 %% To do 3. Transform one of them (upper one).
 %%%%%%%%%% TODO %%%%%%%%%%
 % Create an affine transform object that defines a 5 degree rotation along the z-axis, and 0.1 m translation along the x-axis.
-R = [cosd(0) -sind(0) 0 0; ...
-     sind(0) cosd(0) 0 0; ...
+R = [cosd(5) -sind(5) 0 0; ...
+     sind(5) cosd(5) 0 0; ...
      0 0 1 0; ...
      0 0 0 1];
-T = [1 0 0 0; ...
+T = [1 0 0 0.1; ...
      0 1 0 0; ...
      0 0 1 0; ...
      0 0 0 1];
 
-tform = affinetform3d(0);
+tform = affinetform3d(T*R);
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % transform the upper point cloud using 'pctransform'
-ptCloudUpperTF = 0;
+ptCloudUpperTF = pctransform(ptCloudUpper, tform);
 
 % show the transformed upper point cloud
 figure(4);
-pcshow([0 0 0], 'r');
+pcshow(ptCloudUpperTF.Location, 'r');
 hold on;
-pcshow([0 0 0], 'g');
+pcshow(ptCloudUpper.Location, 'g');
 legend('Transformed upper point cloud', 'Upper point cloud', 'Location', 'southoutside', 'Color', [1 1 1]);
 title('Transformation result');
 

@@ -13,7 +13,7 @@ load('object3d.mat');
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Estimate the normal vectors.
-normals = pcnormals(XXXXXXXX);
+normals = pcnormals(ptCloud);
 
 figure
 pcshow(ptCloud)
@@ -30,9 +30,9 @@ hold on
 
 %% %%%%%%%%%% TODO %%%%%%%%%%
 % Get point cloud location and normal vector.
-x = ptCloud.XXXXXXXX(1:10:end,1:10:end,1);
-y = ptCloud.XXXXXXXX(1:10:end,1:10:end,2);
-z = ptCloud.XXXXXXXX(1:10:end,1:10:end,3);
+x = ptCloud.Location(1:10:end,1:10:end,1);
+y = ptCloud.Location(1:10:end,1:10:end,2);
+z = ptCloud.Location(1:10:end,1:10:end,3);
 
 u = normals(1:10:end,1:10:end,1);
 v = normals(1:10:end,1:10:end,2);
@@ -46,7 +46,7 @@ hold off
 %% %%%%%%%%%% TODO %%%%%%%%%%
 sensorCenter = [0,-0.3,0.3]; 
 for k = 1 : numel(x)
-   p1 = XXXXXXXX - [x(k),y(k),z(k)];
+   p1 = sensorCenter - [x(k),y(k),z(k)];
    p2 = [u(k),v(k),w(k)];
    % Flip the normal vector if it is not pointing towards the sensor.
    angle = atan2(norm(cross(p1,p2)),p1*p2');
@@ -58,7 +58,7 @@ for k = 1 : numel(x)
 end
 
 figure
-pcshow(XXXXXXXX)
+pcshow(ptCloud)
 xlabel('X');
 ylabel('Y');
 zlabel('Z');

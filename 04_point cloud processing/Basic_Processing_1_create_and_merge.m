@@ -14,7 +14,7 @@ loc1 = [x1(:), y1(:), z1(:)];
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Create point cloud A.
-ptCloudA = pointCloud(XXXXXXXX);
+ptCloudA = pointCloud(loc1);
 pcshow(ptCloudA);
 xlabel('X');
 ylabel('Y');
@@ -34,7 +34,7 @@ figure
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Create point cloud B.
-pcshow(XXXXXXXXX)
+pcshow(loc2)
 xlim([-1, 2]);
 ylim([-1, 2]);
 zlim([-1, 2]);
@@ -49,7 +49,7 @@ title({'Creating a Second Point Cloud'},'FontSize', 14, 'Color', 'black')
 %% Merge the two point clouds.
 %%%%%%%%%% TODO %%%%%%%%%%%
 % Merge point cloud A and B.
-ptCloud = pcmerge(XXXXXXXXX, XXXXXXXXX, 0.02);
+ptCloud = pcmerge(ptCloudA, ptCloudB, 0.02);
 figure
 pcshow(ptCloud);
 xlim([-1, 2]);

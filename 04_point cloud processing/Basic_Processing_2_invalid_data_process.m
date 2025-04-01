@@ -13,14 +13,14 @@ xyzpoints(6:2:10,:) = inf('single');
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Create point cloud object using XYZ points.
-ptCloud = pointCloud(XXXXXXXXX); 
+ptCloud = pointCloud(xyzpoints); 
 
 % Inspect the Location property of point cloud data to verify the occurrence of NaN and Inf values.
 ptCloud.Location
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Remove points with NaN and Inf values from the point cloud.
-ptCloudOut = removeInvalidPoints(XXXXXXXXX);
+ptCloudOut = removeInvalidPoints(ptCloud);
 
 % Inspect the Location property of point cloud data to verify that the invalid points are removed.
 ptCloudOut.Location
