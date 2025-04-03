@@ -39,7 +39,7 @@ distThreshold = 5;
 %% 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Segment the lidar data.
-labels = segmentLidarData(XXXXXXX,XXXXXXXXXXXXX);
+labels = segmentLidarData(ptCloud,distThreshold);
 
 %% 
 % Plot the results.

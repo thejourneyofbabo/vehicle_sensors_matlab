@@ -26,7 +26,7 @@ minDistance = 0.5;
 %% 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Segment the point cloud.
-[labels,numClusters] = pcsegdist(XXXXXXX,XXXXXXXXXXX);
+[labels,numClusters] = pcsegdist(ptCloud, minDistance);
 
 %% 
 % Plot the labeled results. The points are grouped into two clusters.

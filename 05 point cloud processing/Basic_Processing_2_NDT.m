@@ -13,7 +13,7 @@ fixed = ld.livingRoomData{2};
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Show the moving and fixed point clouds
-pcshowpair(XXXXXX,XXXXX,'VerticalAxis','Y','VerticalAxisDir','Down')
+pcshowpair(moving, fixed,'VerticalAxis','Y','VerticalAxisDir','Down')
 
 % To improve the efficiency and accuracy of the NDT registration algorithm, downsample the moving point cloud.
 movingDownsampled = pcdownsample(moving,'gridAverage',0.1);
@@ -22,7 +22,7 @@ movingDownsampled = pcdownsample(moving,'gridAverage',0.1);
 gridStep = 0.5;
 
 %%%%%%%%%% TODO %%%%%%%%%%
-tform = pcregisterndt(XXXXXXXXXXXXXXXXX,XXXXX,XXXXXXXX);
+tform = pcregisterndt(movingDownsampled,fixed,gridStep);
 
 % Visualize the alignment.
 movingReg = pctransform(moving,tform);

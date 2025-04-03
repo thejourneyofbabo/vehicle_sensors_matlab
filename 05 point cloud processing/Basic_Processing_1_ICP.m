@@ -14,21 +14,21 @@ title('Teapot');
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Create a transform object with 30 degree rotation along z-axis and translation [5,5,10].
-A = [cos(XXXX) -sin(XXXX) 0 X; ...
-    sin(XXXX) cos(XXXX) 0 X; ...
-            0      0 1 X; ...
+A = [cos(pi/6) -sin(pi/6) 0 5; ...
+    sin(pi/6) cos(pi/6) 0 5; ...
+            0      0 1 10; ...
             0      0 0 1];
 tform1 = affinetform3d(A);
 
 % Transform the point cloud.
 ptCloudTformed = pctransform(ptCloud,tform1);
-
+figure;
 pcshow(ptCloudTformed);
 title('Transformed Teapot');
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Apply the rigid registration.
-tform = pcregistericp(XXXXXXXXXXXXXX,XXXXXXX,'Extrapolate',true);
+tform = pcregistericp(ptCloudTformed, ptCloud,'Extrapolate',true); %% Recheck!!!#####
 
 % Compare the result with the true transformation.
 disp(tform1);

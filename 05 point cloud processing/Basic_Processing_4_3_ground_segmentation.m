@@ -21,14 +21,14 @@ set(gca, 'XColor', [0. 0. 0.], ...
 %% 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Segment ground points from the organized lidar point cloud.
-groundPtsIdx = segmentGroundFromLidarData(XXXXXXXXXX);
+groundPtsIdx = segmentGroundFromLidarData(ld.ptCloud);
 
 %
 %% 
 % Create a point cloud containing only these ground points by using the <docid:vision_ref#buph2kw-1 
 % select> function. Display this point cloud.
 
-groundPtCloud = select(ld.ptCloud,XXXXXXXXXXXX);
+groundPtCloud = select(ld.ptCloud, groundPtsIdx);
 
 figure
 pcshow(groundPtCloud)
@@ -41,7 +41,7 @@ set(gca, 'XColor', [0. 0. 0.], ...
 %% 
 % Create a point cloud containing only the nonground points.
 
-nonGroundPtCloud = select(ld.ptCloud,~XXXXXXXXXXXX);
+nonGroundPtCloud = select(ld.ptCloud,~groundPtsIdx);
 
 %%
 % Display the nonground points cloud clusters.

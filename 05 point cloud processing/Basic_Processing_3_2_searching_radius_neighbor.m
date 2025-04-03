@@ -11,7 +11,7 @@ clear; close all;
 load('xyzPoints.mat');
 
 % Create a point cloud object.
-ptCloud = pointCloud(XXXXXXXXX);
+ptCloud = pointCloud(xyzPoints);
 
 % Specify a query point and the radius within which the neighbors are to be identified.
 point = [0,0,3];
@@ -19,10 +19,10 @@ radius = 0.5;
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Get the indices and the distances of points that lie within the specified radius.
-[indices,dists] = findNeighborsInRadius(XXXXXXX,XXXXX,XXXXXX);
+[indices,dists] = findNeighborsInRadius(ptCloud, point, radius);
 
 % Get the point cloud data of radial neighbors.
-ptCloudB = select(XXXXXXX,XXXXXXX);
+ptCloudB = select(ptCloud, indices);
 
 % Display the point cloud. Plot the query point and the corresponding radial neighbors.
 figure

@@ -9,7 +9,7 @@
 %                  - Minimum Euclidean distance for clustering: 0.02m
 %  Copyright 2019 MathWorks, Inc. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clear; close all;
+clc; clear; close all;
 
 %% Load the point cloud of indoor scene.
 
@@ -34,7 +34,7 @@ set(gca, 'XColor', [0. 0. 0.], ...
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Point Cloud Denoising with 'pcdenoise'.
-denoisedPointCloud = pcdenoise(XXXXXXXXXX);
+denoisedPointCloud = pcdenoise(inputCloud);
 
 figure;
 pcshow(denoisedPointCloud);
@@ -57,29 +57,29 @@ w = waitforbuttonpress;
 %%%%%%%%%% TODO %%%%%%%%%%
 % Fit point cloud to plane 
 % Set the maximum point-to-plane distance (2cm) for plane fitting.
-maxDistance = XXXX;
+maxDistance = 0.02;
 
 % Set the normal vector of the plane.
 referenceVector = [0,0,1];
 
 % Set the maximum angular distance to 5 degrees.
-maxAngularDistance = X;
+maxAngularDistance = 5;
 
 % Detect the first plane, the table, and extract it from the point cloud.
-[model1,inlierIndices,outlierIndices] = pcfitplane(XXXXXXXXXXXXXXXXXX,...
-            XXXXXXXXXXX,XXXXXXXXXXXXXXX,XXXXXXXXXXXXXXXXXX);
-plane1 = select(XXXXXXXXXXXXXXXXXX,XXXXXXXXXXXXX);
-remaininputCloud = select(XXXXXXXXXXXXXXXXXX,XXXXXXXXXXXXXX);
+[model1,inlierIndices,outlierIndices] = pcfitplane(denoisedPointCloud,...
+            maxDistance, referenceVector,maxAngularDistance);
+plane1 = select(denoisedPointCloud,inlierIndices);
+remaininputCloud = select(denoisedPointCloud,outlierIndices);
 
 % Set the region of interest to constrain the search for the second plane, left wall.
 roi = [-inf,inf;0.4,inf;-inf,inf];
-sampleIndices = findPointsInROI(XXXXXXXXXXXXXXXX,XXX);
+sampleIndices = findPointsInROI(remaininputCloud,roi);
 
 % Detect the left wall and extract it from the remaining point cloud.
-[model2,inlierIndices,outlierIndices] = pcfitplane(XXXXXXXXXXXXXXXX,...
-            XXXXXXXXXXX,'SampleIndices',XXXXXXXXXXXXX);
-plane2 = select(XXXXXXXXXXXXXXXX,XXXXXXXXXXXXX);
-remaininputCloud = select(XXXXXXXXXXXXXXXX,XXXXXXXXXXXXXX);
+[model2,inlierIndices,outlierIndices] = pcfitplane(remaininputCloud,...
+            maxDistance,'SampleIndices', sampleIndices);
+plane2 = select(remaininputCloud,sampleIndices);
+remaininputCloud = select(remaininputCloud,outlierIndices);
 
 
 % Plot the two planes and the remaining points.
@@ -120,8 +120,8 @@ w = waitforbuttonpress;
 %% To do 3. Segment the remain point cloud.
 %%%%%%%%%% TODO %%%%%%%%%%
 % Specify a minimum Euclidean distance of 0.02 meters between clusters.
-distThreshold = XXXX;
-[labels,numClusters] = pcsegdist(XXXXXXXXXXXXXXXX,XXXXXXXXXXXXX);
+distThreshold = 0.02;
+[labels,numClusters] = pcsegdist(remaininputCloud,distThreshold);
 
 
 % Plot the result

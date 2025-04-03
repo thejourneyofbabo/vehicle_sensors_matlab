@@ -19,7 +19,7 @@ K = 220;
 
 %%%%%%%%%% TODO %%%%%%%%%%
 % Get the indices and the distances of K nearest neighboring points.
-[indices,dists] = findNearestNeighbors(XXXXXXX,XXXXX,X);
+[indices,dists] = findNearestNeighbors(ptCloud,point,K);
 
 % Display the point cloud. Plot the query point and their nearest neighbors.
 figure
