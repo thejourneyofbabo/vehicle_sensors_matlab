@@ -8,8 +8,10 @@ ref_latt = ref_llh(1);
 ref_logt = ref_llh(2);
 ref_hight = ref_llh(3);
 
-M = ((ELLIPSE_A * ELLIPSE_B)^2) / ((ELLIPSE_A * cosd(ref_latt))^2 + (ELLIPSE_B * sind(ref_latt))^2)^(3/2);
-N = (ELLIPSE_A^2) / sqrt((ELLIPSE_A * cosd(ref_latt))^2 + (ELLIPSE_B * sind(ref_latt))^2);
+% M = ((ELLIPSE_A * ELLIPSE_B)^2) / ((ELLIPSE_A * cosd(ref_latt))^2 + (ELLIPSE_B * sind(ref_latt))^2)^(3/2);
+% N = (ELLIPSE_A^2) / sqrt((ELLIPSE_A * cosd(ref_latt))^2 + (ELLIPSE_B * sind(ref_latt))^2);
+M = MeridionalRadius(ref_latt);
+N = NormalRadius(ref_latt);
 
 %% Todo
 
