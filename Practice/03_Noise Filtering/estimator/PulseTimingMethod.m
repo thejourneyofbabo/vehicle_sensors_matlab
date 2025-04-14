@@ -20,7 +20,7 @@ function [estimated_speed] = PulseTimingMethod(t, pulses, pulsesPerRevolution)
             estimated_speed(idx) = prev_speed;
         end
 
-        % estimated_speed(idx) = 0;
+        estimated_speed(idx) = 0;
         
     end
 end
