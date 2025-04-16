@@ -9,7 +9,8 @@ function [exponential_moving_average_filter_data] = exponentialMovingAverageFilt
             exponential_moving_average_filter_data(idx) = sensor_data(idx);
             continue;
         end
-        exponential_moving_average_filter_data(idx) = alpha*exponential_moving_average_filter_data(idx-1) + (1-alpha)*sensor_data(idx); % fill in the formula instead of 0!
+        exponential_moving_average_filter_data(idx) = alpha*exponential_moving_average_filter_data(idx-1) + ...
+                                                    (1-alpha)*sensor_data(idx); % fill in the formula instead of 0!
     end
     
     %% Visualization
