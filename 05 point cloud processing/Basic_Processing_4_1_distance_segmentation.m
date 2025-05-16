@@ -11,7 +11,8 @@ clear; close all;
 [X,Y,Z] = sphere(100);
 loc1 = [X(:),Y(:),Z(:)];
 loc2 = 2*loc1;
-ptCloud = pointCloud([loc1;loc2]);
+loc3 = 2.55*loc1;
+ptCloud = pointCloud([loc1;loc2;loc3]);
 
 pcshow(ptCloud)
 set(gcf,'color','w');
