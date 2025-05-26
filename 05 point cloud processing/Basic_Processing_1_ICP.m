@@ -30,6 +30,7 @@ title('Transformed Teapot');
 % Apply the rigid registration.
 tform = pcregistericp(ptCloudTformed, ptCloud,'Extrapolate',true); %% Recheck!!!#####
 
+
 % Compare the result with the true transformation.
 disp(tform1);
 
